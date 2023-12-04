@@ -73,7 +73,9 @@ class OtpTextField extends StatefulWidget {
     this.decoration,
     this.onCodeChanged,
     this.borderRadius = const BorderRadius.all(Radius.circular(4.0)),
-    this.inputFormatters, required this.containerWidth, required this.containerHeight,
+    this.inputFormatters,
+    required this.containerWidth,
+    required this.containerHeight,
   })  : assert(numberOfFields > 0),
         assert(styles.length > 0
             ? styles.length == numberOfFields
@@ -133,6 +135,7 @@ class _OtpTextFieldState extends State<OtpTextField> {
   }) {
     return Container(
       decoration: BoxDecoration(
+        color: Color(0xFFE3EDF7),
         shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(

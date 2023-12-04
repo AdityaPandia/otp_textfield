@@ -2,6 +2,7 @@ library flutter_otp_text_field;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 typedef OnCodeEnteredCompletion = void Function(String value);
 typedef OnCodeChanged = void Function(String value);
@@ -156,7 +157,9 @@ class _OtpTextFieldState extends State<OtpTextField> {
           width: 1,
         ),
       ),
-      width: widget.fieldWidth,
+      // width: widget.fieldWidth,
+      width: 47.sp,
+      height: 47.sp,
       margin: widget.margin,
       child: TextField(
         showCursor: widget.showCursor,

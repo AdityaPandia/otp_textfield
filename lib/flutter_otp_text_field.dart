@@ -40,6 +40,8 @@ class OtpTextField extends StatefulWidget {
   final InputDecoration? decoration;
   final List<TextStyle?> styles;
   final List<TextInputFormatter>? inputFormatters;
+  final int containerWidth;
+  final int containerHeight;
 
   OtpTextField({
     this.showCursor = true,
@@ -71,7 +73,7 @@ class OtpTextField extends StatefulWidget {
     this.decoration,
     this.onCodeChanged,
     this.borderRadius = const BorderRadius.all(Radius.circular(4.0)),
-    this.inputFormatters,
+    this.inputFormatters, required this.containerWidth, required this.containerHeight,
   })  : assert(numberOfFields > 0),
         assert(styles.length > 0
             ? styles.length == numberOfFields
@@ -158,8 +160,8 @@ class _OtpTextFieldState extends State<OtpTextField> {
         ),
       ),
       // width: widget.fieldWidth,
-      width: 47.sp,
-      height: 47.sp,
+      width: widget.containerWidth.sp,
+      height: widget.containerHeight.sp,
       margin: widget.margin,
       child: TextField(
         showCursor: widget.showCursor,

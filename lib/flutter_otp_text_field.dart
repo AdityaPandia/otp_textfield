@@ -5,7 +5,8 @@ import 'package:flutter/services.dart';
 
 typedef OnCodeEnteredCompletion = void Function(String value);
 typedef OnCodeChanged = void Function(String value);
-typedef HandleControllers = void Function(List<TextEditingController?> controllers);
+typedef HandleControllers = void Function(
+    List<TextEditingController?> controllers);
 
 class OtpTextField extends StatefulWidget {
   final bool showCursor;
@@ -31,7 +32,7 @@ class OtpTextField extends StatefulWidget {
   final bool filled;
   final bool autoFocus;
   final bool readOnly;
-   bool clearText;
+  bool clearText;
   final bool hasCustomInputDecoration;
   final Color fillColor;
   final BorderRadius borderRadius;
@@ -99,12 +100,12 @@ class _OtpTextFieldState extends State<OtpTextField> {
   @override
   void didUpdateWidget(covariant OtpTextField oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if(oldWidget.clearText != widget.clearText && widget.clearText == true) {
-      for (var controller in _textControllers ){
+    if (oldWidget.clearText != widget.clearText && widget.clearText == true) {
+      for (var controller in _textControllers) {
         controller?.clear();
       }
       _verificationCode = List<String?>.filled(widget.numberOfFields, null);
-      setState((){
+      setState(() {
         widget.clearText = false;
       });
     }
@@ -128,6 +129,33 @@ class _OtpTextFieldState extends State<OtpTextField> {
     TextStyle? style,
   }) {
     return Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        boxShadow: [
+          BoxShadow(
+            color: Color.fromRGBO(111, 140, 176, 0.41),
+            offset: Offset(4, 4),
+            blurRadius: 20,
+            spreadRadius: 0,
+          ),
+          BoxShadow(
+            color: Color.fromRGBO(255, 255, 255, 0.8),
+            offset: Offset(-6, -6),
+            blurRadius: 20,
+            spreadRadius: 0,
+          ),
+          BoxShadow(
+            color: Color.fromRGBO(114, 142, 171, 0.1),
+            offset: Offset(2, 2),
+            blurRadius: 4,
+            spreadRadius: 0,
+          ),
+        ],
+        border: Border.all(
+          color: Color.fromRGBO(214, 227, 243, 0.46),
+          width: 1,
+        ),
+      ),
       width: widget.fieldWidth,
       margin: widget.margin,
       child: TextField(
@@ -171,7 +199,8 @@ class _OtpTextFieldState extends State<OtpTextField> {
             value: value,
             indexOfTextField: index,
           );
-          changeFocusToPreviousNodeWhenValueIsRemoved(value: value, indexOfTextField: index);
+          changeFocusToPreviousNodeWhenValueIsRemoved(
+              value: value, indexOfTextField: index);
           onSubmit(verificationCode: _verificationCode);
         },
       ),
@@ -214,7 +243,6 @@ class _OtpTextFieldState extends State<OtpTextField> {
       }
       return _buildTextField(context: context, index: i);
     });
-
 
     return Row(
       mainAxisAlignment: widget.mainAxisAlignment,
@@ -267,7 +295,6 @@ class _OtpTextFieldState extends State<OtpTextField> {
       }
     }
   }
-
 
   void onSubmit({required List<String?> verificationCode}) {
     if (verificationCode.every((String? code) => code != null && code != '')) {

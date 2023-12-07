@@ -165,7 +165,7 @@ class _OtpTextFieldState extends State<OtpTextField> {
       // width: widget.fieldWidth,
       width: widget.containerWidth.sp,
       height: widget.containerHeight.sp,
-      margin: widget.margin,
+      margin: (index == 5) ? EdgeInsets.only(right: 0) : widget.margin,
       child: TextField(
         showCursor: widget.showCursor,
         keyboardType: widget.keyboardType,

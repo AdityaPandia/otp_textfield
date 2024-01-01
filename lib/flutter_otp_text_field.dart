@@ -143,7 +143,7 @@ class _OtpTextFieldState extends State<OtpTextField> {
         shape: BoxShape.circle,
         boxShadow: const [
           BoxShadow(
-            color: Color.fromRGBO(136, 136, 136, 0.43),
+            color: Color.fromRGBO(47, 46, 46, 0.427),
             offset: Offset(4, 4),
             blurRadius: 14,
             spreadRadius: 0,
@@ -157,7 +157,7 @@ class _OtpTextFieldState extends State<OtpTextField> {
             inset: true,
           ),
         ],
-        border:widget.border,
+        border: widget.border,
       ),
       width: widget.containerWidth.sp,
       height: widget.containerHeight.sp,

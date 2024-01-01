@@ -1,6 +1,7 @@
 library flutter_otp_text_field;
 
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
+import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -9,6 +10,7 @@ typedef OnCodeChanged = void Function(String value);
 typedef HandleControllers = void Function(
     List<TextEditingController?> controllers);
 
+// ignore: must_be_immutable
 class OtpTextField extends StatefulWidget {
   final bool showCursor;
   final int numberOfFields;
@@ -42,8 +44,10 @@ class OtpTextField extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final int containerWidth;
   final int containerHeight;
+  final BoxBorder border;
 
   OtpTextField({
+    required this.border,
     this.showCursor = true,
     this.numberOfFields = 4,
     this.fieldWidth = 40.0,
@@ -135,37 +139,29 @@ class _OtpTextFieldState extends State<OtpTextField> {
   }) {
     return Container(
       decoration: BoxDecoration(
-        color: Color(0xFFE3EDF7),
+        color: const Color(0xFFE3EDF7),
         shape: BoxShape.circle,
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
-            color: Color.fromRGBO(111, 140, 176, 0.41),
+            color: Color.fromRGBO(136, 136, 136, 0.43),
             offset: Offset(4, 4),
-            blurRadius: 20,
+            blurRadius: 14,
             spreadRadius: 0,
+            inset: true,
           ),
           BoxShadow(
-            color: Color.fromRGBO(255, 255, 255, 0.8),
-            offset: Offset(-6, -6),
-            blurRadius: 20,
+            color: Color.fromRGBO(255, 255, 255, 0.60),
+            offset: Offset(-4, -4),
+            blurRadius: 9,
             spreadRadius: 0,
-          ),
-          BoxShadow(
-            color: Color.fromRGBO(114, 142, 171, 0.1),
-            offset: Offset(2, 2),
-            blurRadius: 4,
-            spreadRadius: 0,
+            inset: true,
           ),
         ],
-        border: Border.all(
-          color: Color.fromRGBO(214, 227, 243, 0.46),
-          width: 1,
-        ),
+        border:widget.border,
       ),
-      // width: widget.fieldWidth,
       width: widget.containerWidth.sp,
       height: widget.containerHeight.sp,
-      margin: (index == 5) ? EdgeInsets.only(right: 0) : widget.margin,
+      margin: (index == 5) ? const EdgeInsets.only(right: 0) : widget.margin,
       child: TextField(
         showCursor: widget.showCursor,
         keyboardType: widget.keyboardType,
